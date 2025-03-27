@@ -14,16 +14,15 @@
 - After downloading this folder, put it inside the **HTDOCS** xampp folder.
 LIKE THIS: C:\xampp\htdocs\clonr
 
-# Herman
+# DIRECTLY EDIT HERE YOUR ADDED CODES (DON'T DELETE THE FILES). We can see the history.
+**Herman**
 - ADD TO CART FUNCTION
 
-# Ryan
+**Ryan**
 - User Change profile
 
-# Vincent/Rj
+**Vincent/Rj**
 - Animation/Transition
-
-DIRECTLY EDIT HERE YOUR ADDED CODES (DON'T DELETE THE FILES). We can see the history.
 
 # Links
 
