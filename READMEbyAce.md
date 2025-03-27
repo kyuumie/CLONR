@@ -23,4 +23,4 @@ LIKE THIS: C:\xampp\htdocs\clonr
 # Vincent/Rj
 - Animation/Transition
 
-DIRECTLY EDIT HERE YOUR ADDED CODES (DON'T DELETE THE FILES).
+DIRECTLY EDIT HERE YOUR ADDED CODES (DON'T DELETE THE FILES). We can see the history.
