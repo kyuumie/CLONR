@@ -6,13 +6,13 @@
 - Kindly use the templates for the header and footer design.
 - Be mindful about the path of hrefs.
 
+- I haven't completed yet the accessories, jackets, pants folders. Just experiment first on the files available.
+- The Login is in the dropdown of **HOME**.
+
 # HOW TO RUN THE FILE LIKE A LIVE SERVER
 
 - After downloading this folder, put it inside the **HTDOCS** xampp folder.
 LIKE THIS: C:\xampp\htdocs\clonr
-
-- I haven't completed yet the accessories, jackets, pants folders. Just experiment first on the files available.
-- The Login is in the dropdown of **HOME**.
 
 # Herman
 - ADD TO CART FUNCTION
