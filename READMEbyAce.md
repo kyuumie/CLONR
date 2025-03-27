@@ -24,3 +24,10 @@ LIKE THIS: C:\xampp\htdocs\clonr
 - Animation/Transition
 
 DIRECTLY EDIT HERE YOUR ADDED CODES (DON'T DELETE THE FILES). We can see the history.
+
+# Links
+
+**CLONR CALENDAR** https://docs.google.com/spreadsheets/d/1r4vqus25twClybeXKFHffU4TLEhNZIfNZ25q4949euk/edit?gid=34443562#gid=34443562
+**YT OVERVIEW** https://www.youtube.com/watch?v=F8OpKveD5pk&list=PLv9DiLCEuK6QHElXCarNDl6mcb0H8dcyM&index=1
+**GDRIVE SOURCE CODE** https://drive.google.com/file/d/1b_WNJogKLycjxm2IlNfFIAqqt3T2JfB0/view?pli=1
+**ADD TO CART LAYOUT** https://www.youtube.com/watch?v=2SbhlPiC5SY&list=PLe28tn1x4EIYlb9cvanZ97XQ5xoQpwcZD&index=1
