@@ -29,6 +29,7 @@
                 <li><a href="../../sale.php">SALE</a></li>
                 <li><a href="../../sizechart.php">SIZE CHART</a></li>
                 <li><a href="../../contact.php">CONTACT US</a></li>
+                <li><a href="../../cart.php">CART (<span class="cart-count">0</span>)</a></li>
               </ul>
             </nav>
           </div>
@@ -69,29 +70,23 @@
 
       <script>
         const images = [
-        "https://dbtkco.com/cdn/shop/files/CIPHERSPLICEDSHORTS3.jpg?v=1734574023",
-        "https://dbtkco.com/cdn/shop/files/CIPHERSPLICEDSHORTS4.jpg?v=1734574023",
-        "https://dbtkco.com/cdn/shop/files/DB100038.webp?v=1734574023"
+          "https://dbtkco.com/cdn/shop/files/CIPHERSPLICEDSHORTS3.jpg?v=1734574023",
+          "https://dbtkco.com/cdn/shop/files/CIPHERSPLICEDSHORTS4.jpg?v=1734574023",
+          "https://dbtkco.com/cdn/shop/files/DB100038.webp?v=1734574023"
         ];
 
         let currentIndex = 0;
         const sliderImage = document.getElementById('slider-image');
 
         function prevSlide() {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        sliderImage.src = images[currentIndex];
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          sliderImage.src = images[currentIndex];
         }
 
         function nextSlide() {
-        currentIndex = (currentIndex + 1) % images.length;
-        sliderImage.src = images[currentIndex];
+          currentIndex = (currentIndex + 1) % images.length;
+          sliderImage.src = images[currentIndex];
         }
-
-        document.getElementById('add-to-cart').addEventListener('click', () => {
-        const selectedSize = document.getElementById('size').value;
-        const selectedQuantity = document.getElementById('quantity').value;
-        alert(`Added ${selectedQuantity} x Size ${selectedSize} to Cart`);
-        });
       </script>
 
       <hr class="custom-hr">
@@ -104,20 +99,7 @@
         </div>
       </footer>
 
-      <script>
-        document.getElementById('price-sort').addEventListener('change', function() {
-          const productsGrid = document.getElementById('products-grid');
-          const products = Array.from(productsGrid.getElementsByClassName('product-card'));
-          const sortOption = this.value;
-    
-          if (sortOption === 'low-to-high') {
-            products.sort((a, b) => a.getAttribute('data-price') - b.getAttribute('data-price'));
-          } else if (sortOption === 'high-to-low') {
-            products.sort((a, b) => b.getAttribute('data-price') - a.getAttribute('data-price'));
-          }
-    
-          products.forEach(product => productsGrid.appendChild(product));
-        });
-      </script>
+      <!-- Include the cart.js file -->
+      <script src="../../js/cart.js"></script>
     </body>
 </html>
