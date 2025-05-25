@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_review'])) {
     
     
     
-    $anonymousUserId = 999; 
+    $anonymousUserId = 23; 
     $userIdToStore = $postAnonymous ? $anonymousUserId : $loggedInUserId;
 
 
@@ -104,10 +104,30 @@ if ($productId) {
         
         if ($product) {
              
-             if (!empty($product['image_url'])) {
-                 $allImages[] = $product['image_url'];
-             }
+             // Add main image from DB column if present
+             $allImages = [];
+            if (!empty($product['image_url'])) {
+                $allImages[] = $product['image_url'];
+            }
 
+            // Handle file upload if present
+            if (!empty($_FILES['image']['name'])) {
+                $image = $_FILES['image']['name'];
+                $image_size = $_FILES['image']['size'];
+                $image_tmp_name = $_FILES['image']['tmp_name'];
+                $image_folder = "../uploaded_img/{$image}";
+                
+                if ($image_size > 2000000) {
+                    $message[] = 'Image size is too large!';
+                } else {
+                    if (move_uploaded_file($image_tmp_name, $image_folder)) {
+                        // If you want to add the uploaded image to the display array
+                        $allImages[] = $image_folder;
+                    } else {
+                        $message[] = 'Failed to upload image!';
+                    }
+                }
+            }
              
              $sqlImages = "SELECT image_url FROM product_images WHERE product_id = :product_id ORDER BY sort_order ASC, id ASC";
              $stmtImages = $conn->prepare($sqlImages);
@@ -199,7 +219,8 @@ unset($_SESSION['review_errors']);
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title><?php echo $productName; ?> - CLONR</title> <link rel="stylesheet" href="../../global.css"/> <link rel="stylesheet" href="../addtocart.css">
-         <link rel="stylesheet" href="product_detail.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="product_detail.css">
          <link rel="stylesheet" href="../reviews.css">
     </head>
 
@@ -230,6 +251,12 @@ unset($_SESSION['review_errors']);
       </header>
 
       <section class="product-section">
+        <div>
+          <a href="../accessories.php" class="back-button" style="display: inline-flex; align-items: center; padding: 10px 15px; text-decoration: none; color:rgb(0, 0, 0); font-weight: 500; font-size: 14px; border-radius: 6px; transition: all 0.2s ease;">
+              <span style="margin-right: 8px; font-size: 16px;">&larr;</span>
+              Back 
+          </a>
+        </div>
         <div class="product-details">
           <h2><?php echo $productCategory; ?></h2> <h1><?php echo $productName; ?></h1> <p>₱<?php echo $productPrice; ?></p> <?php if (!empty($productDescription)): ?>
               <div class="product-description">

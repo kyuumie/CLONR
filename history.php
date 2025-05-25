@@ -260,6 +260,7 @@ foreach($pending_orders as $order) {
     </header>
    
     <main>
+         <h1>Your Order History</h1>
         <div class="toggle-buttons" role="tablist" aria-label="Toggle purchase history between completed, pending and canceled">
             
             <button id="completedTab" role="tab" aria-selected="true" aria-controls="purchaseTable" class="active" tabindex="0">Completed</button>

@@ -40,7 +40,7 @@ try {
     $params = [];
 
     // Apply status filter
-    if (!empty($status_filter) && in_array($status_filter, ['pending', 'processing', 'shipped', 'completed', 'cancelled'])) {
+    if (!empty($status_filter) && in_array($status_filter, ['pending', 'processing', 'shipped', 'completed', 'canceled'])) {
         $query .= " AND payment_status = ?";
         $count_query .= " AND payment_status = ?";
         $params[] = $status_filter;
@@ -89,7 +89,7 @@ try {
             SUM(payment_status = 'processing') as processing,
             SUM(payment_status = 'shipped') as shipped,
             SUM(payment_status = 'completed') as completed,
-            SUM(payment_status = 'cancelled') as cancelled
+            SUM(payment_status = 'canceled') as cancelled
         FROM orders
     ");
     $order_counts = $counts_query->fetch(PDO::FETCH_ASSOC);
@@ -311,8 +311,13 @@ try {
                                         <a href="order_details.php?id=<?= $order['id'] ?>" class="action-btn view" title="View Details">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        
-                                      
+                                        <a href="receipt.php?order_id=<?= htmlspecialchars($order['id']) ?>" 
+                                            class="receipt-link completed" 
+                                            target="_blank"
+                                            onclick="return confirm('View receipt for order #<?= htmlspecialchars($order['id']) ?>?')">
+                                                <i class="bi bi-receipt-cutoff"></i> View Receipt
+                                            </a>
+                                                                                
                                         
                                         <!-- <a href="#" class="action-btn print" title="Print Invoice" onclick="printInvoice(<?= $order['id'] ?>)">
                                             <i class="fas fa-print"></i>
@@ -359,7 +364,7 @@ try {
     <footer>
         <div class="footer-content">
             <h2>CLONR - Wear the Movement</h2>
-            <p>Email: noreply.CLONR@gmail.com | Phone: +63 XXX XXX XXXX</p>
+            <p>Email: customerservice.clonr@gmail.com | Phone: +63 XXX XXX XXXX</p>
             <p>© 2025 CLONR. All Rights Reserved.</p>
         </div>
     </footer>

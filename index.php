@@ -30,8 +30,8 @@
                     <li><a href="login.php">Accessories</a></li>
                   </ul>
                 </li>
-                <li><a href="sizechart.php">SIZE CHART</a></li>
-                <li><a href="contact.php">CONTACT US</a></li>
+                <li><a href="login.php">SIZE CHART</a></li>
+                <li><a href="login.php">CONTACT US</a></li>
               </ul>
             </nav>
           </div>

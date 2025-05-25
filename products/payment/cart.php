@@ -153,8 +153,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_item'])) {
         </table>
 
         <div class="cart-actions">
-            <a href="checkout.php" class="checkout-button">Proceed to Checkout</a>
+            
             <a href="../../main.php" class="continue-shopping">Continue Shopping</a>
+            <a href="checkout.php" class="checkout-button">Proceed to Checkout</a>
         </div>
     <?php endif; ?>
 </main>
@@ -164,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_item'])) {
 <footer>
     <div class="footer-content">
         <h2>CLONR - Wear the Movement</h2>
-        <p>Email: customerservice.CLONR@gmail.com | Phone: +63 XXX XXX XXXX</p>
+        <p>Email: customerservice.clonr@gmail.com | Phone: +63 XXX XXX XXXX</p>
         <p>© 2025 CLONR. All Rights Reserved.</p>
     </div>
 </footer>

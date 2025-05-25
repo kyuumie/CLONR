@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_review'])) {
     
     
     
-    $anonymousUserId = 999; 
+    $anonymousUserId = 23; 
     $userIdToStore = $postAnonymous ? $anonymousUserId : $loggedInUserId;
 
 
@@ -199,7 +199,8 @@ unset($_SESSION['review_errors']);
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title><?php echo $productName; ?> - CLONR</title> <link rel="stylesheet" href="../../global.css"/> <link rel="stylesheet" href="../addtocart.css">
-         <link rel="stylesheet" href="product_detail.css">
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="product_detail.css">
          <link rel="stylesheet" href="../reviews.css">
     </head>
 
@@ -230,6 +231,12 @@ unset($_SESSION['review_errors']);
       </header>
 
       <section class="product-section">
+        <div>
+          <a href="../shorts.php" class="back-button" style="display: inline-flex; align-items: center; padding: 10px 15px; text-decoration: none; color:rgb(0, 0, 0); font-weight: 500; font-size: 14px; border-radius: 6px; transition: all 0.2s ease;">
+              <span style="margin-right: 8px; font-size: 16px;">&larr;</span>
+              Back 
+          </a>
+        </div>
         <div class="product-details">
           <h2><?php echo $productCategory; ?></h2> <h1><?php echo $productName; ?></h1> <p>₱<?php echo $productPrice; ?></p> <?php if (!empty($productDescription)): ?>
               <div class="product-description">

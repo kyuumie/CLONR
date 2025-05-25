@@ -1,0 +1,8 @@
+{
+    "name": "ace/clonr",
+    "description": "CLONR Email Registration System",
+    "license": "MIT",
+    "require": {
+        "phpmailer/phpmailer": "*"
+    }
+}

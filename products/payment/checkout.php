@@ -29,12 +29,15 @@ $cart_query->execute([$user_id]);
 if($cart_query->rowCount() > 0){
    while($cart_item = $cart_query->fetch(PDO::FETCH_ASSOC)){
       $cart_products[] = [
-         'name' => $cart_item['name'],
-         'price' => $cart_item['price'],
-         'quantity' => $cart_item['quantity'],
-         'product_id' => $cart_item['pid'], // Make sure to include product ID
-         'description' => 'Quantity: ' . $cart_item['quantity']
-      ];
+   'name' => $cart_item['name'],
+   'price' => $cart_item['price'],
+   'quantity' => $cart_item['quantity'],
+   'product_id' => $cart_item['pid'],
+   'description' => 'Quantity: ' . $cart_item['quantity'],
+   'size' => $cart_item['size'],
+
+
+];
       $cart_total += ($cart_item['price'] * $cart_item['quantity']);
    }
 }
@@ -47,9 +50,9 @@ if(isset($_POST['place_order'])){
    $method = filter_var($_POST['method'], FILTER_SANITIZE_STRING);
    $address = filter_var($_POST['street'] .' '. $_POST['brgy'] .' '. $_POST['city'] .' '. $_POST['region'] .' '. $_POST['country'], FILTER_SANITIZE_STRING);
    $dt = new DateTime('now', new DateTimeZone('Asia/Manila'));
-   $placed_on = $dt->format('Y-m-d H:i:s');
+  
    $total_products = implode(', ', array_map(function($item) {
-      return $item['name'] . ' (' . $item['quantity'] . ')';
+      return $item['name'] . ' (' . $item['quantity'] . ')' .' (' . $item['size'] . ')' ;
    }, $cart_products));
 
    // Check for duplicate orders
@@ -76,8 +79,8 @@ if(isset($_POST['place_order'])){
          
          // Insert order items
          foreach ($cart_products as $item) {
-            $insert_item = $conn->prepare("INSERT INTO order_items (order_id, product_id, product_name, quantity, price) VALUES (?, ?, ?, ?, ?)");
-            $insert_item->execute([$order_id, $item['product_id'], $item['name'], $item['quantity'], $item['price']]);
+            $insert_item = $conn->prepare("INSERT INTO order_items (order_id, product_id, product_name, quantity, price,size) VALUES (?, ?, ?, ?, ?,?)");
+            $insert_item->execute([$order_id, $item['product_id'], $item['name'], $item['quantity'], $item['price'], $item['size']]);
          }
          
          // Deduct money from user's balance
@@ -148,6 +151,11 @@ if(isset($_POST['place_order'])){
     .scrollbar::-webkit-scrollbar-thumb:hover {
       background: #94a3b8;
     }
+     .custom-hr {
+    width: 100%; 
+    border: 1px solid #800020;
+    margin-top: 5%;
+  }
   </style>
 </head>
 <body class="min-h-screen bg-gray-100">
@@ -203,7 +211,7 @@ if(isset($_POST['place_order'])){
                       placeholder="Enter your email">
              </div>
              
-             <input type="hidden" name="method" value="Gcash">
+             <input type="hidden" name="method" value="OGcash">
              
              <h3 class="text-lg font-bold text-black mt-6 mb-4 border-b border-gray-200 pb-2">Shipping Address</h3>
              
@@ -247,7 +255,7 @@ if(isset($_POST['place_order'])){
        </div>
      </div>
 
-     <!-- Right Column - Order Summary -->
+      <!-- Right Column - Order Summary -->
      <div class="lg:w-1/3">
        <div class="bg-white rounded-xl shadow-lg sticky top-6">
          <div class="p-6">
@@ -261,7 +269,7 @@ if(isset($_POST['place_order'])){
                  <img src="https://storage.googleapis.com/a1aa/image/10c90c25-0fec-4ecd-6ca2-279e0ae45274.jpg" alt="GCash" class="h-8 w-auto">
                </div>
                <div>
-                 <p class="font-medium text-black">GCash</p>
+                 <p class="font-medium text-black">OGcash</p>
                  <p class="text-sm text-gray-500">Pay with your GCash account</p>
                </div>
              </div>
@@ -281,6 +289,7 @@ if(isset($_POST['place_order'])){
                    <div>
                      <p class="font-medium text-black"><?= htmlspecialchars($item['name']) ?></p>
                      <p class="text-sm text-gray-500">Qty: <?= htmlspecialchars($item['quantity']) ?></p>
+                     <p class="text-sm text-gray-500"> <?= htmlspecialchars($item['size']) ?></p>
                    </div>
                    <p class="font-medium text-black">₱<?= number_format($item['price'] * $item['quantity'], 2) ?></p>
                  </div>
@@ -337,15 +346,19 @@ if(isset($_POST['place_order'])){
        </div>
      </div>
    </div>
+  
 
-   <!-- Footer -->
-   <footer class="bg-black text-white py-8 mt-12 rounded-b-xl">
-     <div class="max-w-7xl mx-auto px-6 text-center">
-       <h2 class="text-2xl font-bold mb-2">CLONR</h2>
-       <p class="mb-1">Wear the Movement</p>
-       <p class="text-gray-400">© 2025 CLONR. All Rights Reserved.</p>
-     </div>
-   </footer>
+
+  <footer class="py-8 mt-12 rounded-b-xl">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <hr class="custom-hr">
+      <br>
+     <h2 class="text-2xl font-bold mb-2 text-black">CLONR</h2>
+     <p class="mb-1 text-black">Wear the Movement</p>
+     <p class="text-black">Email: customerservice.clonr@gmail.com | Phone: +63 XXX XXX XXXX</p>
+     <p class="text-black">© 2025 CLONR. All Rights Reserved.</p>
+    </div>
+  </footer>
   </div>
 
   <script>

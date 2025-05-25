@@ -176,7 +176,7 @@ if (isset($_POST['update_profile'])) {
                         </li>
                         <li><a href="sizechart.php">SIZE CHART</a></li>
                         <li><a href="contact.php">CONTACT US</a></li>
-                        <li><a href="products/payment/cart.php">CART (<span class="cart-count">0</span>)</a></li>
+                        <li><a href="products/payment/cart.php">CART</a></li>
                     </ul>
                     </nav>
             </div>

@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
 
     // Validate phone number: must be a string of exactly 9 digits
     if (!preg_match('/^\d{10}$/', $phone)) {
-        $message[] = 'Phone number must be exactly 9 digits!';
+        $message[] = 'Phone number must be exactly 10 digits!';
         $phone = ''; // Reset only if validation fails
     } else {
         // Check if phone number already exists only if format is valid

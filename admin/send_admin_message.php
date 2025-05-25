@@ -2,34 +2,28 @@
 // Start session and check if admin is logged in
 session_start();
 if (!isset($_SESSION['admin_id'])) {
-    $_SESSION['error'] = "Please login first";
-    header("Location: login.php");
-    exit();
+    die("Please login first");
 }
-
 $db_name = "mysql:host=localhost;dbname=clonr_db";
 $username = "root";
 $password = "";
+// Connect to database (simple way)
+$conn = new PDO($db_name, $username, $password);
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+// Get form data
+$user_id = $_POST['user_id'];
+$subject = $_POST['subject'];
+$message = $_POST['message'];
+$admin_id = $_SESSION['admin_id'];
+
+// Simple validation
+if (empty($user_id) || empty($subject) || empty($message)) {
+    die("Please fill all fields");
+}
+
+// Insert message
 try {
-    // Connect to database
-    $conn = new PDO($db_name, $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Get form data
-    $user_id = $_POST['user_id'] ?? '';
-    $subject = $_POST['subject'] ?? '';
-    $message = $_POST['message'] ?? '';
-    $admin_id = $_SESSION['admin_id'];
-
-    // Validate inputs
-    if (empty($user_id) || empty($subject) || empty($message)) {
-        $_SESSION['error'] = "Please fill all fields";
-        header("Location: messages.php");
-        exit();
-    }
-
-    // Insert message
     $stmt = $conn->prepare("
         INSERT INTO messages
         (user_id, sender_id, sender_type, subject, message, is_read, created_at)
@@ -44,12 +38,10 @@ try {
         ':message' => $message
     ]);
     
-    $_SESSION['success'] = "Message sent successfully!";
-    header("Location: messages.php");
-    exit();
-
+    // Simple success message
+    echo "Message sent! <a href='messages.php'>Go back</a>";
+    
 } catch (PDOException $e) {
-    $_SESSION['error'] = "Error sending message: " . $e->getMessage();
-    header("Location: messages.php");
-    exit();
+    die("Error: " . $e->getMessage());
 }
+?>

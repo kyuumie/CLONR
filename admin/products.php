@@ -143,19 +143,19 @@ if (isset($_GET['delete'])) {
             <div class="flex">
                 <div class="inputBox">
                     <input type="text" name="name" class="box" required placeholder="Enter product name">
-                    <textarea name="description" class="box" placeholder="Enter product description"></textarea>
+                    
                     <select name="category" class="box" required>
                         <option value="" selected disabled>Select category</option>
-                        <option value="tshirts">T-shirts</option>
-                        <option value="jackets">Jackets</option>
-                        <option value="shorts">Shorts</option>
-                        <option value="pants">Pants</option>
-                        <option value="accessories">Accessories</option>
+                        <option value="T-shirts">T-shirts</option>
+                        <option value="Jackets">Jackets</option>
+                        <option value="Shorts">Shorts</option>
+                        <option value="Pants">Pants</option>
+                        <option value="Accessories">Accessories</option>
                     </select>
                 </div>
                 <div class="inputBox">
                     <input type="number" min="0" step="0.01" name="price" class="box" required placeholder="Enter product price">
-                    <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp">
+                    <input type="hidden" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp">
                     <input type="text" name="image_url" placeholder="Or enter image URL" class="box">
                 </div>
             </div>
@@ -199,7 +199,7 @@ if (isset($_GET['delete'])) {
     <footer>
         <div class="footer-content">
             <h2>CLONR - Wear the Movement</h2>
-            <p>Email: noreply.CLONR@gmail.com | Phone: +63 XXX XXX XXXX</p>
+            <p>Email: customerservice.clonr@gmail.com | Phone: +63 XXX XXX XXXX</p>
             <p>© 2025 CLONR. All Rights Reserved.</p>
         </div>
     </footer>

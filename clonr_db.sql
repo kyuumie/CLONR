@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2025 at 02:50 PM
+-- Generation Time: May 19, 2025 at 07:13 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -83,7 +83,8 @@ INSERT INTO `cart` (`id`, `user_id`, `pid`, `name`, `size`, `quantity`, `price`,
 (7, 1, 1, 'CIPHER SPLICED SHORTS - KHAKI/CREAM', 'Small', 1, 1100.00, 'https://dbtkco.com/cdn/shop/files/CIPHERSPLICEDSHORTS3.jpg'),
 (8, 1, 1, 'CIPHER SPLICED SHORTS - KHAKI/CREAM', 'Small', 1, 1100.00, 'https://dbtkco.com/cdn/shop/files/CIPHERSPLICEDSHORTS3.jpg'),
 (13, 11, 2, 'CIPHER STREAK CREWNECK - BROWN CREAM', 'Small', 1, 2300.00, 'https://dbtkco.com/cdn/shop/files/CIPHERSTREAKCREWNECK3.jpg?v=1728695291'),
-(14, 11, 4, 'HYPER GARAGE METAL KEYCHAIN', 'Small', 1, 350.00, 'https://dbtkco.com/cdn/shop/files/HYPERGARAGEMETALKEYCHAIN.jpg?v=1732589925');
+(14, 11, 4, 'HYPER GARAGE METAL KEYCHAIN', 'Small', 1, 350.00, 'https://dbtkco.com/cdn/shop/files/HYPERGARAGEMETALKEYCHAIN.jpg?v=1732589925'),
+(59, 16, 0, 'RACING PANTS', 'Small', 1, 5995.00, 'https://dbtkco.com/cdn/shop/files/RACING_PANTS.jpg?v=1741421203');
 
 -- --------------------------------------------------------
 
@@ -165,7 +166,10 @@ INSERT INTO `orders` (`id`, `user_id`, `name`, `number`, `email`, `method`, `add
 (25, 16, 'Ryan Lozana', 2147483647, 'ral531715@gmail.com', 'Gcash', '146 Langka Modesta st., langka Meycauayan Bulacan Philippines', 'MOB V2 TEE - BROWN (1), MOB V2 TEE - BROWN (1), D-SPARK PANELED PANTS - CREAM BEIGE (1), D-SPARK PANELED PANTS - CREAM BEIGE (5)', 19200.00, '2025-05-18 17:32:44', 'processing'),
 (29, 16, 'Ryan Lozana', 2147483647, 'ral531715@gmail.com', 'Gcash', '146 Langka Modesta st., langka Meycauayan Bulacan Philippines', 'CIPHER STREAK CREWNECK - BROWN CREAM (5), HYPER GARAGE STICKER PACK (5)', 13250.00, '2025-05-18 18:11:29', 'canceled'),
 (30, 16, 'Ryan Lozana', 2147483647, 'ral531715@gmail.com', 'Gcash', '146 Langka Modesta st., langka Meycauayan Bulacan Philippines', 'D-SPARK PANELED PANTS - CREAM BEIGE (1), OAKSHADE WIDE PANTS (3), DBTK SLANT BODY BAG (3)', 14250.00, '2025-05-18 18:56:22', 'Pending'),
-(31, 16, 'Ryan Lozana', 2147483647, 'ral531715@gmail.com', 'Gcash', '146 Langka Modesta st., langka Meycauayan Bulacan Philippines', 'D-SPARK PANELED PANTS - CREAM BEIGE (1)', 2700.00, '2025-05-18 19:09:58', 'shipped');
+(31, 16, 'Ryan Lozana', 2147483647, 'ral531715@gmail.com', 'Gcash', '146 Langka Modesta st., langka Meycauayan Bulacan Philippines', 'D-SPARK PANELED PANTS - CREAM BEIGE (1)', 2700.00, '2025-05-18 19:09:58', 'shipped'),
+(32, 17, 'ace', 2147483647, 'cordivilla.micaace@ue.edu.ph', 'Gcash', '22 Honradez Tugatog Malabon NCR Philippines', 'CIPHER STREAK CREWNECK - MID GRAY/ OFF WHITE (1), HYPER GARAGE METAL KEYCHAIN (1), INFINITE CHASE TEE - WHITE (1)', 3600.00, '2025-05-18 22:45:37', 'canceled'),
+(33, 16, 'ace', 2147483647, 'cordivilla.micaace@ue.edu.ph', 'OGcash', '22 Honradez Tugatog Malabon NCR Philippines', 'RACING PANTS (1)', 5995.00, '2025-05-19 11:14:38', 'Pending'),
+(34, 16, 'ace', 2147483647, 'cordivilla.micaace@ue.edu.ph', 'OGcash', '22 Honradez Tugatog Malabon NCR Philippines', 'D-SPARK PANELED JACKET - CREAM BEIGE (1) (Small)', 3000.00, '2025-05-19 11:20:03', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -206,6 +210,7 @@ CREATE TABLE `order_items` (
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `product_name` varchar(255) NOT NULL,
+  `size` varchar(10) DEFAULT NULL,
   `quantity` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -214,13 +219,18 @@ CREATE TABLE `order_items` (
 -- Dumping data for table `order_items`
 --
 
-INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `product_name`, `quantity`, `price`) VALUES
-(1, 29, 0, 'CIPHER STREAK CREWNECK - BROWN CREAM', 5, 2300.00),
-(2, 29, 0, 'HYPER GARAGE STICKER PACK', 5, 350.00),
-(3, 30, 0, 'D-SPARK PANELED PANTS - CREAM BEIGE', 1, 2700.00),
-(4, 30, 0, 'OAKSHADE WIDE PANTS', 3, 2500.00),
-(5, 30, 0, 'DBTK SLANT BODY BAG', 3, 1350.00),
-(6, 31, 0, 'D-SPARK PANELED PANTS - CREAM BEIGE', 1, 2700.00);
+INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `product_name`, `size`, `quantity`, `price`) VALUES
+(1, 29, 0, 'CIPHER STREAK CREWNECK - BROWN CREAM', NULL, 5, 2300.00),
+(2, 29, 0, 'HYPER GARAGE STICKER PACK', NULL, 5, 350.00),
+(3, 30, 0, 'D-SPARK PANELED PANTS - CREAM BEIGE', NULL, 1, 2700.00),
+(4, 30, 0, 'OAKSHADE WIDE PANTS', NULL, 3, 2500.00),
+(5, 30, 0, 'DBTK SLANT BODY BAG', NULL, 3, 1350.00),
+(6, 31, 0, 'D-SPARK PANELED PANTS - CREAM BEIGE', NULL, 1, 2700.00),
+(7, 32, 1, 'CIPHER STREAK CREWNECK - MID GRAY/ OFF WHITE', NULL, 1, 2300.00),
+(8, 32, 0, 'HYPER GARAGE METAL KEYCHAIN', NULL, 1, 350.00),
+(9, 32, 0, 'INFINITE CHASE TEE - WHITE', NULL, 1, 950.00),
+(10, 33, 0, 'RACING PANTS', 'Small', 1, 5995.00),
+(11, 34, 0, 'D-SPARK PANELED JACKET - CREAM BEIGE', 'Small', 1, 3000.00);
 
 -- --------------------------------------------------------
 
@@ -333,6 +343,8 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `user_type` varchar(20) NOT NULL DEFAULT 'user',
+  `verification_token` varchar(255) DEFAULT NULL,
+  `is_verified` tinyint(1) DEFAULT 0,
   `image` varchar(100) NOT NULL,
   `phone` varchar(15) DEFAULT NULL,
   `created_acc` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -345,14 +357,16 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `user_type`, `image`, `phone`, `created_acc`, `Status`, `balance`, `money`) VALUES
-(6, 'Mi', 'a@a', '0cc175b9c0f1b6a831c399e269772661', 'user', 'Ace.jpg', '0', '2025-05-16 07:21:33', 'active', 0, 0),
-(11, 'Ryan Lozana', 'ral531715@gmail.com', 'e807f1fcf82d132f9bb018ca6738a19f', 'user', '68272061a3dde.png', '0', '2025-05-16 07:21:33', 'Active', 0, 3005),
-(12, 'aaa', 'a@a.c', '12f9cf6998d52dbe773b06f848bb3608', 'user', 'IMG_7372 (1).jpg', '0', '2025-05-16 07:21:33', 'active', 0, 0),
-(13, 'Zeck', 'Zekaido123@gmail.com', '247f8b5944da561cd6c2cda1748fb081', 'admin', '6826ec2ff24dc.jpg', '0', '2025-05-16 07:21:33', 'Active', 0, 0),
-(14, 'Ryan Lozana', 'ral5131715@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'user', 'Ace.jpg', '09166245138', '2025-05-16 07:21:33', 'Active', 0, 0),
-(15, 'Ryan', 'kazutokir@gmail.com', '25f9e794323b453885f5181f1b624d0b', 'user', '205d97f5-14af-4ff4-b3d8-dadcb3bc217c.jfif', '9606202043', '2025-05-16 07:37:25', 'Active', 0, 9992700),
-(16, 'Zekkkkkk', 'Zekaido13@gmail.com', '247f8b5944da561cd6c2cda1748fb081', 'user', 'Ace.jpg', '0921420397', '2025-05-16 18:52:03', 'Active', 0, 9917450);
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `user_type`, `verification_token`, `is_verified`, `image`, `phone`, `created_acc`, `Status`, `balance`, `money`) VALUES
+(6, 'Mi', 'a@a', '0cc175b9c0f1b6a831c399e269772661', 'user', NULL, 0, 'Ace.jpg', '0', '2025-05-16 07:21:33', 'active', 0, 0),
+(11, 'Ryan Lozana', 'ral531715@gmail.com', 'e807f1fcf82d132f9bb018ca6738a19f', 'user', NULL, 0, '68272061a3dde.png', '0', '2025-05-16 07:21:33', 'Active', 0, 3005),
+(12, 'aaa', 'a@a.c', '12f9cf6998d52dbe773b06f848bb3608', 'user', NULL, 0, 'IMG_7372 (1).jpg', '0', '2025-05-16 07:21:33', 'active', 0, 0),
+(13, 'Zeck', 'Zekaido123@gmail.com', '247f8b5944da561cd6c2cda1748fb081', 'admin', NULL, 0, '6826ec2ff24dc.jpg', '0', '2025-05-16 07:21:33', 'Active', 0, 0),
+(14, 'Ryan Lozana', 'ral5131715@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'user', NULL, 0, 'Ace.jpg', '09166245138', '2025-05-16 07:21:33', 'Active', 0, 0),
+(15, 'Ryan', 'kazutokir@gmail.com', '25f9e794323b453885f5181f1b624d0b', 'user', NULL, 0, '205d97f5-14af-4ff4-b3d8-dadcb3bc217c.jfif', '9606202043', '2025-05-16 07:37:25', 'Active', 0, 9992700),
+(16, 'Zekkkkkk', 'Zekaido13@gmail.com', '247f8b5944da561cd6c2cda1748fb081', 'user', NULL, 0, 'Ace.jpg', '0921420397', '2025-05-16 18:52:03', 'Active', 0, 9908455),
+(17, 'Aaa', 'micaacec@gmail.com', '55bff7256d568fa0705b09643ebe5284', 'user', NULL, 0, 'line.jpg', '9929046528', '2025-05-18 14:39:37', 'Active', 0, 10000000),
+(18, 'eee', 'acy995kim@gmail.com', '3dbe00a167653a1aaee01d93e77e730e', 'user', 'db6dd55f1678e0ca1f76f03e66421a4b0913583e8fa6d283e6bf41cf8b9cc60e', 0, 'line.jpg', '9929046528', '2025-05-18 16:34:41', 'Active', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -427,7 +441,7 @@ ALTER TABLE `admin_logs`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `messages`
@@ -439,7 +453,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `order_history`
@@ -451,7 +465,7 @@ ALTER TABLE `order_history`
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -463,7 +477,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
@@ -488,59 +502,6 @@ ALTER TABLE `messages`
 ALTER TABLE `order_history`
   ADD CONSTRAINT `order_history_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
   ADD CONSTRAINT `order_history_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`);
-
-
---
--- Add table `reviews` including constraints
---
-
-CREATE TABLE `reviews` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `product_id` int(10) UNSIGNED NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
-  `rating` int(10) UNSIGNED NOT NULL,
-  `review_text` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ;
-
---
--- Dumping data for table `reviews`
---
-
-INSERT INTO `reviews` (`id`, `product_id`, `user_id`, `rating`, `review_text`, `created_at`) VALUES
-(1, 12, 1, 5, 'good jacket lmao', '2025-05-19 07:05:43'),
-(2, 12, 1, 5, 'nigma balls', '2025-05-19 07:21:22'),
-(3, 12, 999, 2, 'magic man', '2025-05-19 07:26:25'),
-(4, 37, 999, 4, 'wow', '2025-05-19 07:41:15'),
-(5, 34, 999, 5, 'W drip cuh', '2025-05-19 07:42:32');
-
-
---
--- Indexes for table `reviews`
---
-ALTER TABLE `reviews`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- AUTO_INCREMENT for table `reviews`
---
-ALTER TABLE `reviews`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `reviews`
---
-ALTER TABLE `reviews`
-  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
-
-
-
-
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

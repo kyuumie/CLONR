@@ -252,7 +252,7 @@ if (isset($_POST['update_product'])) {
     <footer>
         <div class="footer-content">
             <h2>CLONR - Wear the Movement</h2>
-            <p>Email: noreply.CLONR@gmail.com | Phone: +63 XXX XXX XXXX</p>
+            <p>Email: customerservice.clonr@gmail.com | Phone: +63 XXX XXX XXXX</p>
             <p>© 2025 CLONR. All Rights Reserved.</p>
         </div>
     </footer>
